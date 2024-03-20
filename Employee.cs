@@ -4,14 +4,14 @@ namespace database_exercise
 {
     internal class Employee
     {
-        public string id { get; }
+        public int id { get; }
         public string name { get; }
         public string role { get; set; }
         public double salary { get; private set; }
 
-        public Employee(string id, string name, string role, double salary = 0)
+        public Employee(int id, string name, string role, double salary = 0)
         {
-            this.id = id;
+            this.id = id; 
             this.name = name;
             this.role = role;
             this.salary = salary;
