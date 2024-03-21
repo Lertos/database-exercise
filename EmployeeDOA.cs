@@ -1,18 +1,18 @@
 ﻿namespace dao
 {
-    internal interface EmployeeDOA
+    internal interface DOA<T>
     {
-        Employee GetEmployee(int id);
+        T Get(int id);
 
-        Employee[] GetEmployees();
+        T[] GetAll();
 
-        int save(Employee employee);
+        int Save(T t);
 
-        int update(Employee employee);
+        int Update(T t);
 
-        int insert(Employee employee);
+        int Insert(T t);
 
-        int delete(Employee employee);
+        int Delete(T t);
 
     }
 }
