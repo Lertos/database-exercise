@@ -1,6 +1,6 @@
 ﻿namespace dao
 {
-    internal interface DOA<T>
+    internal interface DAO<T>
     {
         T Get(int id);
 
