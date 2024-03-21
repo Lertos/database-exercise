@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace database_exercise
+namespace dao
 {
     internal class Employee
     {

@@ -1,4 +1,4 @@
-﻿namespace database_exercise
+﻿namespace dao
 {
     internal interface EmployeeDOA
     {

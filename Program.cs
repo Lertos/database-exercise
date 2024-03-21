@@ -1,5 +1,5 @@
 ﻿
-using database_exercise;
+using dao;
 
 Employee employee = new(1, "Jack Jackson", "Developer I", 70000.0);
 
