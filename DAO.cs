@@ -6,8 +6,6 @@
 
         T[] GetAll();
 
-        int Save(T t);
-
         int Update(T t);
 
         int Insert(T t);
