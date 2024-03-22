@@ -20,3 +20,7 @@ await using (var reader = await cmd.ExecuteReaderAsync())
     while (await reader.ReadAsync())
         Console.WriteLine(reader.GetString(1));
 }
+
+EmployeeDAOImpl dao = new EmployeeDAOImpl();
+
+dao.Get(1);

@@ -1,4 +1,5 @@
 ﻿using dao;
+using Npgsql;
 
 namespace database_exercise
 {
@@ -9,9 +10,27 @@ namespace database_exercise
             throw new NotImplementedException();
         }
 
-        public Employee Get(int id)
+        public Employee? Get(int id)
         {
-            throw new NotImplementedException();
+            using NpgsqlConnection? conn = Database.GetConnection();
+            Employee? employee = null;
+
+            if (conn == null)
+                return null;
+
+            conn.OpenAsync();
+
+            string sql = "SELECT * FROM employee";
+            using var cmd = new NpgsqlCommand(sql, conn);
+
+            using NpgsqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Console.WriteLine("{0} {1} {2}", rdr.GetInt32(0), rdr.GetString(1), rdr.GetInt32(2));
+            }
+
+            return employee;
         }
 
         public Employee[] GetAll()
