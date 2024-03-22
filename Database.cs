@@ -4,16 +4,27 @@ namespace database_exercise
 {
     internal class Database
     {
-        private static string host = "";
-        private static string username = "";
-        private static string password = "";
-        private static string database = "";
+        private static string host = "localhost";
+        private static int port = 5432;
+        private static string username = "test_user";
+        private static string password = "password";
+        private static string database = "corporate";
 
         private Database() { }
 
-        public static NpgsqlConnection GetConnection()
+        public static NpgsqlConnection? GetConnection()
         {
-            NpgsqlConnection connection = new NpgsqlConnection($"Host={host};Username={username};Password={password};Database={database};");
+            NpgsqlConnection? connection = null;
+
+            try
+            {
+                connection = new NpgsqlConnection($"Host={host};Port={port};Username={username};Password={password};Database={database};");
+
+            }
+            catch (Exception ex )
+            {
+                Console.WriteLine(ex.Message);
+            }
 
             return connection;
         }
