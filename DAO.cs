@@ -2,9 +2,9 @@
 {
     internal interface DAO<T>
     {
-        T Get(int id);
+        T? Get(int id);
 
-        T[] GetAll();
+        T[]? GetAll();
 
         int Update(T t);
 
