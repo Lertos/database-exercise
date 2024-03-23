@@ -33,27 +33,6 @@ namespace database_exercise
             return null;
         }
 
-        public void Getd(int id)
-        {
-            using NpgsqlConnection? conn = Database.GetConnection();
-            Employee? employee = null;
-
-            if (conn == null)
-                return;
-
-            conn.Open();
-
-            string sql = "SELECT * FROM employee";
-            using var cmd = new NpgsqlCommand(sql, conn);
-
-            using NpgsqlDataReader rdr = cmd.ExecuteReader();
-
-            while (rdr.Read())
-            {
-                Console.WriteLine("{0} {1} {2}", rdr.GetInt32(0), rdr.GetString(1), rdr.GetInt32(2));
-            }
-        }
-
         public List<Employee> GetAll()
         {
             using NpgsqlConnection? conn = Database.GetConnection();
