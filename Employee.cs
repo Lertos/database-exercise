@@ -5,14 +5,16 @@ namespace dao
     internal class Employee
     {
         public int id { get; }
-        public string name { get; }
+        public string firstName { get; }
+        public string lastName { get; }
         public string role { get; set; }
         public double salary { get; private set; }
 
-        public Employee(int id, string name, string role, double salary = 0)
+        public Employee(int id, string firstName, string lastName, string role, double salary = 0)
         {
             this.id = id; 
-            this.name = name;
+            this.firstName = firstName;
+            this.lastName = lastName;
             this.role = role;
             this.salary = salary;
         }
@@ -23,7 +25,9 @@ namespace dao
 
             sb.Append(id);
             sb.Append(',');
-            sb.Append(name);
+            sb.Append(firstName);
+            sb.Append(",");
+            sb.Append(lastName);
             sb.Append(",");
             sb.Append(role);
             sb.Append(",");
