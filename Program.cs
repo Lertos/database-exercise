@@ -11,3 +11,9 @@ foreach (Employee employee in  employees)
     Console.WriteLine(employee.ToString());
 }
 
+Employee? singleEmployee = dao.Get(1);
+
+if (singleEmployee != null)
+    Console.WriteLine(singleEmployee.ToString());
+
+

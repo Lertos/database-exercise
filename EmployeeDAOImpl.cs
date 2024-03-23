@@ -13,24 +13,34 @@ namespace database_exercise
         public Employee? Get(int id)
         {
             using NpgsqlConnection? conn = Database.GetConnection();
-            Employee? employee = null;
 
             if (conn == null)
                 return null;
 
             conn.OpenAsync();
 
-            string sql = "SELECT * FROM employee";
+            string sql = "SELECT * FROM employee WHERE id = @id";
             using var cmd = new NpgsqlCommand(sql, conn);
 
+            cmd.Parameters.AddWithValue("id", id);
+            cmd.Prepare();
+
             using NpgsqlDataReader rdr = cmd.ExecuteReader();
+            
+            Employee? employee = null;
 
             while (rdr.Read())
             {
-                Console.WriteLine("{0} {1} {2}", rdr.GetInt32(0), rdr.GetString(1), rdr.GetInt32(2));
-                return null;
+                int employeeId = rdr.GetInt32(0);
+                string firstName = rdr.GetString(1);
+                string lastName = rdr.GetString(2);
+                string role = rdr.GetString(3);
+                double salary = rdr.GetDouble(4);
+
+                employee = new(employeeId, firstName, lastName, role, salary);
             }
-            return null;
+
+            return employee;
         }
 
         public List<Employee> GetAll()
