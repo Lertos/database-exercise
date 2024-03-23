@@ -4,7 +4,7 @@
     {
         T? Get(int id);
 
-        T[]? GetAll();
+        List<T>? GetAll();
 
         int Update(T t);
 
