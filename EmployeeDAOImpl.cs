@@ -77,7 +77,25 @@ namespace database_exercise
 
         public int Insert(Employee employee)
         {
-            throw new NotImplementedException();
+            using NpgsqlConnection? conn = Database.GetConnection();
+
+            if (conn == null)
+                return -1;
+
+            conn.Open();
+
+            var sql = "INSERT INTO EMPLOYEE (FIRST_NAME,LAST_NAME,ROLE,SALARAY) VALUES (@firstName, @lastName, @role, @salary);";
+            using var cmd = new NpgsqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("firstName", employee.firstName);
+            cmd.Parameters.AddWithValue("lastName", employee.lastName);
+            cmd.Parameters.AddWithValue("role", employee.role);
+            cmd.Parameters.AddWithValue("salary", employee.salary);
+            cmd.Prepare();
+
+            int rowsChanged = cmd.ExecuteNonQuery();
+
+            return rowsChanged;
         }
 
         public int Update(Employee employee)
