@@ -27,6 +27,13 @@ namespace dao
             this.salary = salary;
         }
 
+        public void SetSalary(double newSalary)
+        {
+            if (newSalary < 0) return;
+
+            this.salary = newSalary;
+        }
+
         public override string? ToString()
         {
             StringBuilder sb = new StringBuilder();
