@@ -7,7 +7,22 @@ namespace database_exercise
     {
         public int Delete(Employee employee)
         {
-            throw new NotImplementedException();
+            using NpgsqlConnection? conn = Database.GetConnection();
+
+            if (conn == null)
+                return -1;
+
+            conn.Open();
+
+            var sql = "DELETE FROM employee WHERE id = @id;";
+            using var cmd = new NpgsqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("id", employee.id);
+            cmd.Prepare();
+
+            int rowsChanged = cmd.ExecuteNonQuery();
+
+            return rowsChanged;
         }
 
         public Employee? Get(int id)

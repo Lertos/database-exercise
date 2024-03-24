@@ -2,23 +2,39 @@
 using dao;
 using database_exercise;
 
-//Testing GetAll
 EmployeeDAOImpl dao = new EmployeeDAOImpl();
 
-List<Employee> employees = dao.GetAll();
+//Testing Insert
+Console.WriteLine("===Insert");
+Employee newEmployee = new Employee("Fae", "Faerie", "Manager", 120000);
 
-foreach (Employee employee in  employees)
+dao.Insert(newEmployee);
+
+//Testing GetAll
+Console.WriteLine("===GetAll");
+List<Employee> employees = dao.GetAll();
+int newEmployeeId = -1;
+
+foreach (Employee employee in employees)
 {
     Console.WriteLine(employee.ToString());
+
+    if (employee.firstName == "Fae")
+        newEmployeeId = employee.id;
 }
 
+if (newEmployeeId == -1)
+    return;
+
 //Testing Get
-Employee? singleEmployee = dao.Get(1);
+Console.WriteLine("===Get");
+Employee? singleEmployee = dao.Get(newEmployeeId);
 
 if (singleEmployee != null)
     Console.WriteLine(singleEmployee.ToString());
 
-//Testing Insert
-Employee newEmployee = new Employee("Fae", "Faerie", "Manager", 120000);
+//Testing Delete
+Console.WriteLine("===Delete");
 
-dao.Insert(newEmployee);
+if (singleEmployee != null)
+    dao.Delete(singleEmployee);
