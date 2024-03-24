@@ -10,6 +10,14 @@ namespace dao
         public string role { get; set; }
         public double salary { get; private set; }
 
+        public Employee(string firstName, string lastName, string role, double salary = 0)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.role = role;
+            this.salary = salary;
+        }
+
         public Employee(int id, string firstName, string lastName, string role, double salary = 0)
         {
             this.id = id; 
