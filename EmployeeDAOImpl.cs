@@ -115,7 +115,26 @@ namespace database_exercise
 
         public int Update(Employee employee)
         {
-            throw new NotImplementedException();
+            using NpgsqlConnection? conn = Database.GetConnection();
+
+            if (conn == null)
+                return -1;
+
+            conn.Open();
+
+            var sql = "UPDATE EMPLOYEE SET FIRST_NAME = @firstName, LAST_NAME = @lastName, ROLE = @role, SALARAY = @salary WHERE id = @id;";
+            using var cmd = new NpgsqlCommand(sql, conn);
+
+            cmd.Parameters.AddWithValue("firstName", employee.firstName);
+            cmd.Parameters.AddWithValue("lastName", employee.lastName);
+            cmd.Parameters.AddWithValue("role", employee.role);
+            cmd.Parameters.AddWithValue("salary", employee.salary);
+            cmd.Parameters.AddWithValue("id", employee.id);
+            cmd.Prepare();
+
+            int rowsChanged = cmd.ExecuteNonQuery();
+
+            return rowsChanged;
         }
     }
 }

@@ -34,7 +34,21 @@ if (singleEmployee != null)
     Console.WriteLine(singleEmployee.ToString());
 
 //Testing Delete
-Console.WriteLine("===Delete");
+//Console.WriteLine("===Delete");
+
+//if (singleEmployee != null)
+//    dao.Delete(singleEmployee);
+
+//Testing Update
+Console.WriteLine("===Update");
+
+singleEmployee.SetSalary(123000);
+
+dao.Update(singleEmployee);
+
+//Testing Get
+Console.WriteLine("===Get");
+singleEmployee = dao.Get(singleEmployee.id);
 
 if (singleEmployee != null)
-    dao.Delete(singleEmployee);
+    Console.WriteLine(singleEmployee.ToString());
